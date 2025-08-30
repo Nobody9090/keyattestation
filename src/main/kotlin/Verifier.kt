@@ -172,8 +172,8 @@ open class Verifier(
       rootOfTrust.verifiedBootState,
       deviceInformation,
       DeviceIdentity.parseFrom(keyDescription),
-      keyDescription.hardwareEnforced.attestationApplicationId,
-      keyDescription.softwareEnforced.attestationApplicationId
+      keyDescription.softwareEnforced.attestationApplicationId,
+      keyDescription.hardwareEnforced.attestationApplicationId
     )
   }
 }
