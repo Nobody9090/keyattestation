@@ -41,8 +41,8 @@ sealed interface VerificationResult {
     val verifiedBootState: VerifiedBootState,
     val deviceInformation: ProvisioningInfoMap?,
     val attestedDeviceIds: DeviceIdentity,
-    val packages: Set<AttestationPackageInfo>?,
-    val signatures: Set<ByteString>?
+    val softwareEnforcedAttestationApplicationId: AttestationApplicationId?,
+    val hardwareEnforcedAttestationApplicationId: AttestationApplicationId?,
   ) : VerificationResult
 
   data object ChallengeMismatch : VerificationResult
@@ -172,8 +172,8 @@ open class Verifier(
       rootOfTrust.verifiedBootState,
       deviceInformation,
       DeviceIdentity.parseFrom(keyDescription),
-      keyDescription.hardwareEnforced.attestationApplicationId?.packages,
-      keyDescription.hardwareEnforced.attestationApplicationId?.signatures,
+      keyDescription.hardwareEnforced.attestationApplicationId,
+      keyDescription.softwareEnforced.attestationApplicationId
     )
   }
 }
